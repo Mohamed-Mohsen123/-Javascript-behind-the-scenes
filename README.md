@@ -93,3 +93,73 @@ Execution flow:
 - `one()` removed
 
 ---
+
+## 3-Javascript Garbage Collection & Memory Leaks
+
+---
+
+### JavaScript Garbage Collection
+
+JavaScript handles memory automatically — you don’t manually free memory like in C/C++.
+
+The engine (like V8 in Chrome) uses Garbage Collection to remove unused memory.
+
+Core Idea: Reachability
+
+An object is kept in memory if it’s reachable, meaning:
+
+It’s referenced by a variable
+It’s part of a chain of references from global scope
+
+If it’s not reachable → it gets deleted
+
+### Memory Leaks in JavaScript
+
+Memory is no longer needed but still not garbage collected
+
+# Common Causes of Memory Leaks:
+
+1. Global Variables
+
+```javascript
+function leak() {
+  name = "Mohamed"; // forgot let/const → becomes global
+}
+```
+
+✔ Fix:
+
+```javascript
+let name = "Mohamed";
+```
+
+2. setInterval / setTimeout
+
+```javascript
+setInterval(() => {
+  console.log("Running...");
+}, 1000);
+```
+
+👉 If not cleared → keeps running forever
+
+✔ Fix:
+
+```javascript
+const id = setInterval(() => {}, 1000);
+clearInterval(id);
+```
+
+3. Event Listeners Not Removed
+
+```javascript
+button.addEventListener("click", handler);
+```
+
+👉 If element removed but listener not → memory leak
+
+✔ Fix:
+
+```javascript
+button.removeEventListener("click", handler);
+```
