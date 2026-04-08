@@ -54,3 +54,42 @@
 - **AST**: Converting code into a tree
 - **Interpreter and Compiler**: Code execution
 - **JIT**: Combining the advantages of both
+
+---
+
+## 2-Call Stack & Memory Heap in JavaScript
+
+#### 1)The Memory Heap is where JavaScript stores:
+
+Objects { }
+Arrays [ ]
+Functions
+Complex data
+
+#### 2)The Call Stack is a stack (LIFO):
+
+Last In → First Out
+It tracks function calls
+Example:
+
+```javascript
+function one() {
+  two();
+}
+
+function two() {
+  console.log("Hello");
+}
+
+one();
+```
+
+Execution flow:
+
+- `one()` pushed to stack
+- Inside it → `two()` pushed
+- `console.log()` runs
+- `two()` removed
+- `one()` removed
+
+---
