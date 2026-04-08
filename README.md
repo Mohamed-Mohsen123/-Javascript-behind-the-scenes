@@ -117,7 +117,7 @@ If it’s not reachable → it gets deleted
 
 Memory is no longer needed but still not garbage collected
 
-# Common Causes of Memory Leaks:
+#### Common Causes of Memory Leaks:
 
 1. Global Variables
 
@@ -163,3 +163,44 @@ button.addEventListener("click", handler);
 ```javascript
 button.removeEventListener("click", handler);
 ```
+
+## 4-JavaScript Single Thread & Runtime
+
+JavaScript executes one task at a time.
+
+It uses one Call Stack and runs code synchronously by default.
+
+JavaScript runs inside environments like:
+
+Browser
+Node.js
+
+These provide features to handle asynchronous operations
+
+### Runtime Components
+
+1.  Call Stack
+    Executes functions
+    Works as LIFO (Last In → First Out)
+
+2.  Web APIs
+    Handle async operations outside the Call Stack
+
+         Examples:
+
+         setTimeout
+         setInterval
+         fetch
+         DOM events
+
+3.  Callback Queue
+    Stores callbacks from async tasks
+    Waits until Call Stack is empty
+
+4.  Event Loop
+    Monitors Call Stack & Callback Queue
+
+👉 Rule:
+
+If Call Stack is empty → move callback to stack
+Otherwise → wait
