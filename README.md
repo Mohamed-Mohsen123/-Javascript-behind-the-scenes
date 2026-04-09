@@ -205,7 +205,7 @@ These provide features to handle asynchronous operations
 If Call Stack is empty → move callback to stack
 Otherwise → wait
 
-## JavaScript Execution Context & Lexical Environment
+## 5-JavaScript Execution Context & Lexical Environment
 
 ### Execution Context
 
@@ -254,3 +254,42 @@ Each function creates a new Execution Context
 Each context has its own Lexical Environment
 Lexical = where written, not where called
 This is why closures work
+
+## 6-JavaScript Hoisting
+
+Hoisting means that JavaScript moves declarations to the top of their scope before execution.
+
+But ⚠️ important:
+
+Only declarations are hoisted
+Initializations stay in place
+
+Before running your code, the JavaScript Engine does:
+
+Scans the code
+Allocates memory for variables & functions
+Then executes line by line
+
+![alt text](/assests/img/image.png)
+
+#### let and const ❌
+
+```javascript
+console.log(b); // ❌ ReferenceError
+let b = 20;
+```
+
+Why?
+let and const are hoisted BUT
+They stay in something called the Temporal Dead Zone (TDZ) until initialized
+
+#### Function Hoisting
+
+![alt text](/assests/img/image1.png)
+
+Behind the scenes:
+
+```javascript
+var greet; // hoisted as undefined
+greet(); // ❌ TypeError: greet is not a function
+```
