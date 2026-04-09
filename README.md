@@ -204,3 +204,53 @@ These provide features to handle asynchronous operations
 
 If Call Stack is empty → move callback to stack
 Otherwise → wait
+
+## JavaScript Execution Context & Lexical Environment
+
+### Execution Context
+
+An Execution Context is the environment where JavaScript code is executed.
+
+🔹 Types:
+Global Execution Context (GEC) → created first
+Function Execution Context (FEC) → created when a function runs
+
+### Lexical Environment
+
+A Lexical Environment is how variables are organized and accessed based on where they are written (scope).
+
+🔹 Components:
+Environment Record → stores variables & functions
+Outer Environment Reference → reference to parent scope
+Example:
+
+```javascript
+function outer() {
+  let a = 10;
+
+  function inner() {
+    let b = 20;
+    console.log(a + b);
+  }
+
+  inner();
+}
+
+outer();
+```
+
+🔍 How JS resolves variables:
+inner looks for b → found inside
+looks for a → not inside → goes to outer
+finds a = 10
+prints 30
+🔗 Key Concept: Scope Chain
+
+👉 JavaScript searches variables like this:
+
+Current Scope → Parent Scope → Global Scope
+⚡ Important Notes
+Each function creates a new Execution Context
+Each context has its own Lexical Environment
+Lexical = where written, not where called
+This is why closures work
